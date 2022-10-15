@@ -41,7 +41,6 @@ async def name_search(ctx, name: discord.Option(str)):
         else:
             embed.description = f"{len(r.json())} results found for {name}:"
             for result in r.json():
-                print(result)
                 embed.add_field(name=result['primary_name'], value=f"**aka:** {list(result['names'])}\n\n**Tags:** {list(result['tags'])}\n\n**Link:** {result['link']}", inline=False)
         await ctx.respond(embed=embed)
     elif r.status_code == 404 or r.text.startswith("Cannot GET"):
@@ -65,7 +64,6 @@ async def tag_search(ctx, tags: discord.Option(str)):
         else:
             embed.description = f"{len(r.json())} results found for {tagParam}:"
             for result in r.json():
-                print(result)
                 embed.add_field(name=result['primary_name'], value=f"**aka:** {list(result['names'])}\n\n**Tags:** {list(result['tags'])}\n\n**Link:** {result['link']}", inline=False)
         await ctx.respond(embed=embed)
     elif r.status_code == 404 or r.text.startswith("Cannot GET"):
